@@ -39,8 +39,9 @@ layout: compress
             {% assign tags = page.tags %}
             <span itemprop="keywords">
               {% for tag in tags %}
+              {% assign tag_url = '/tags/#' | append: tag | downcase | slugify %}
               <a class="tag"
-                href="/tags/#{{tag | downcase | slugify}}">{{tag | upcase }}</a>{% unless forloop.last %},{% endunless %}
+                href="{{ tag_url | relative_url }}">{{tag | upcase }}</a>{% unless forloop.last %},{% endunless %}
               {% endfor %}
             </span>
           </div>
