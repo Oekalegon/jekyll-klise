@@ -92,7 +92,8 @@ layout: compress
     </main>
 
     {% if page.series %}
-      {% assign series_articles = site.articles | where: "series", page.series | sort: "series_order" %}
+      {% assign published_series = site.articles | where: "series", page.series | where: "published", true %}
+      {% assign series_articles = published_series | sort: "series_order" %}
       {% if series_articles.size > 1 %}
         <nav class="post-nav">
           {% assign current_index = 0 %}
