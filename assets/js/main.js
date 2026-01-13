@@ -5,16 +5,19 @@
 
   const toggleTheme = () => {
     const currentState = localStorage.getItem("theme");
-    const isDark = body.hasAttribute("data-theme");
+    const html = document.documentElement;
+    const isDark = body.hasAttribute("data-theme") || html.hasAttribute("data-theme");
     
     if (currentState === "dark" || (currentState === null && isDark)) {
       // Switch to light
       localStorage.setItem("theme", "light");
       body.removeAttribute("data-theme");
+      html.removeAttribute("data-theme");
     } else {
       // Switch to dark
       localStorage.setItem("theme", "dark");
       body.setAttribute("data-theme", "dark");
+      html.setAttribute("data-theme", "dark");
     }
   };
 

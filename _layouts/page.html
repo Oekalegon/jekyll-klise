@@ -10,33 +10,28 @@ layout: compress
 <body data-theme="{{ site.mode }}" class="notransition">
 
   <script>
+    // Sync body theme with html element (set in head) and remove transition class
     const body = document.body;
-    const defaultTheme = body.getAttribute("data-theme") || "dark";
-
+    const html = document.documentElement;
+    
+    // Ensure body has the same theme as html (set in head script)
+    const htmlTheme = html.getAttribute("data-theme");
+    if (htmlTheme === "dark") {
+      body.setAttribute("data-theme", "dark");
+    } else {
+      body.removeAttribute("data-theme");
+    }
+    
+    // Make initTheme available globally for main.js
     window.initTheme = (state) => {
       if (state === "dark") {
         body.setAttribute("data-theme", "dark");
+        html.setAttribute("data-theme", "dark");
       } else if (state === "light") {
         body.removeAttribute("data-theme");
-      } else {
-        // No stored preference, check OS preference
-        const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
-        const osTheme = prefersDark ? "dark" : "light";
-        if (osTheme === "dark") {
-          body.setAttribute("data-theme", "dark");
-        } else {
-          body.removeAttribute("data-theme");
-        }
-        localStorage.setItem("theme", osTheme);
+        html.removeAttribute("data-theme");
       }
     };
- 
-    const storedTheme = localStorage.getItem("theme");
-    if (storedTheme) {
-      initTheme(storedTheme);
-    } else {
-      initTheme(null); // Will use OS preference
-    }
     
     setTimeout(() => body.classList.remove("notransition"), 75);
   </script>
