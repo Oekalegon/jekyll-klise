@@ -1,0 +1,36 @@
+// Article-specific styles
+// Articles share the same wrapper and header structure as posts,
+// but have additional series and category styling
+
+.header {
+  .series-info {
+    margin-bottom: 1em;
+    font-size: $small-font-size;
+    color: $gray;
+    letter-spacing: 0.5px;
+
+    .series-label {
+      font-weight: $normal-weight;
+    }
+
+    .series-name {
+      font-weight: $bold-weight;
+      margin-left: 0.5em;
+    }
+
+    .series-part {
+      font-weight: $bold-weight;
+      margin-left: 0.5em;
+      color: $text-link-blue;
+    }
+  }
+}
+
+.post-meta {
+  .categories {
+    .category {
+      font-weight: $normal-weight;
+    }
+  }
+}
+
