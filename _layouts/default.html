@@ -9,19 +9,32 @@ layout: compress
 
   <script>
     const body = document.body;
-    const data = body.getAttribute("data-theme");
+    const defaultTheme = body.getAttribute("data-theme") || "dark";
 
-    const initTheme = (state) => {
+    window.initTheme = (state) => {
       if (state === "dark") {
         body.setAttribute("data-theme", "dark");
       } else if (state === "light") {
         body.removeAttribute("data-theme");
       } else {
-        localStorage.setItem("theme", data);
+        // No stored preference, check OS preference
+        const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+        const osTheme = prefersDark ? "dark" : "light";
+        if (osTheme === "dark") {
+          body.setAttribute("data-theme", "dark");
+        } else {
+          body.removeAttribute("data-theme");
+        }
+        localStorage.setItem("theme", osTheme);
       }
     };
  
-    initTheme(localStorage.getItem("theme"));
+    const storedTheme = localStorage.getItem("theme");
+    if (storedTheme) {
+      initTheme(storedTheme);
+    } else {
+      initTheme(null); // Will use OS preference
+    }
     
     setTimeout(() => body.classList.remove("notransition"), 75);
   </script>
