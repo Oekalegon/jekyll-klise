@@ -13,12 +13,18 @@ layout: compress
     const body = document.body;
     const html = document.documentElement;
     
-    // Ensure body has the same theme as html (set in head script)
+    // Read theme from html element (set by head script from localStorage)
+    // Don't trust body's initial attribute as it defaults to site.mode
     const htmlTheme = html.getAttribute("data-theme");
-    if (htmlTheme === "dark") {
+    const storedTheme = localStorage.getItem("theme");
+    
+    // Apply theme based on html element or localStorage (head script should have set html already)
+    if (htmlTheme === "dark" || storedTheme === "dark") {
       body.setAttribute("data-theme", "dark");
+      html.setAttribute("data-theme", "dark");
     } else {
       body.removeAttribute("data-theme");
+      html.removeAttribute("data-theme");
     }
     
     // Make initTheme available globally for main.js
