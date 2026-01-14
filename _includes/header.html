@@ -161,28 +161,21 @@
   <meta name="theme-color" content="#2c2c2c" />
 
   <!-- Theme initialization - must run before CSS loads -->
-  <script>
+  <script type="text/javascript">
     (function() {
-      const storedTheme = localStorage.getItem("theme");
-      const defaultTheme = "{{ site.mode }}" || "dark";
-      let theme = storedTheme;
-      
+      var storedTheme = localStorage.getItem("theme");
+      var theme = storedTheme;
       if (!theme) {
-        // No stored preference, check OS preference
-        if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
-          theme = "dark";
-        } else {
-          theme = "light";
-        }
+        var prefersDark = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches;
+        theme = prefersDark ? "dark" : "light";
         localStorage.setItem("theme", theme);
       }
-      
-      // Apply theme immediately by setting it on html element
-      // This will be inherited by body when it renders
-      if (theme === "dark") {
-        document.documentElement.setAttribute("data-theme", "dark");
-      } else {
-        document.documentElement.removeAttribute("data-theme");
+      if (document.documentElement) {
+        if (theme === "dark") {
+          document.documentElement.setAttribute("data-theme", "dark");
+        } else {
+          document.documentElement.removeAttribute("data-theme");
+        }
       }
     })();
   </script>

@@ -31,3 +31,14 @@ gem "tzinfo-data", platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem "wdm", "~> 0.1.0" if Gem.win_platform?
 
 gem "webrick", "~> 1.7"
+# Ruby 4.0 removed these from default gems - Jekyll needs them
+gem "logger"
+gem "csv"
+gem "base64"
+gem "bigdecimal"
+gem "uri"
+gem "json"
+gem "openssl"
+gem "net-smtp"
+gem "net-imap"
+gem "net-pop"
