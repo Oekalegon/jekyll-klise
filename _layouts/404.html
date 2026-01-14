@@ -6,40 +6,7 @@ layout: compress
 <html lang="{{ page.lang | default: site.lang | default: " en " }}">
 
 {% include header.html %}
-<body data-theme="{{ site.mode }}" class="notransition">
-
-  <script>
-    // Sync body theme with html element (set in head) and remove transition class
-    const body = document.body;
-    const html = document.documentElement;
-    
-    // Read theme from html element (set by head script from localStorage)
-    // Don't trust body's initial attribute as it defaults to site.mode
-    const htmlTheme = html.getAttribute("data-theme");
-    const storedTheme = localStorage.getItem("theme");
-    
-    // Apply theme based on html element or localStorage (head script should have set html already)
-    if (htmlTheme === "dark" || storedTheme === "dark") {
-      body.setAttribute("data-theme", "dark");
-      html.setAttribute("data-theme", "dark");
-    } else {
-      body.removeAttribute("data-theme");
-      html.removeAttribute("data-theme");
-    }
-    
-    // Make initTheme available globally for main.js
-    window.initTheme = (state) => {
-      if (state === "dark") {
-        body.setAttribute("data-theme", "dark");
-        html.setAttribute("data-theme", "dark");
-      } else if (state === "light") {
-        body.removeAttribute("data-theme");
-        html.removeAttribute("data-theme");
-      }
-    };
-    
-    setTimeout(() => body.classList.remove("notransition"), 75);
-  </script>
+<body class="notransition">
 
   {% include navbar.html %}
   <div class="wrapper">

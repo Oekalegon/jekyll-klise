@@ -17,6 +17,9 @@
     >
   </small>
 </footer>
+<script type="text/javascript">
+(function(){var t=localStorage.getItem("theme");var b=document.body;var h=document.documentElement;if(t==="dark"){b.setAttribute("data-theme","dark");h.setAttribute("data-theme","dark")}else if(t==="light"){b.removeAttribute("data-theme");h.removeAttribute("data-theme")}window.initTheme=function(t){if(t==="dark"){b.setAttribute("data-theme","dark");h.setAttribute("data-theme","dark")}else if(t==="light"){b.removeAttribute("data-theme");h.removeAttribute("data-theme")}};setTimeout(function(){b.classList.remove("notransition")},75)})();
+</script>
 <script src="{{ '/assets/js/main.js' | relative_url }}" defer="defer"></script>
 {%- if site.google_analytics -%}
   <!-- Google tag (gtag.js) -->

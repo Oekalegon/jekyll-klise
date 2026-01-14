@@ -162,22 +162,7 @@
 
   <!-- Theme initialization - must run before CSS loads -->
   <script type="text/javascript">
-    (function() {
-      var storedTheme = localStorage.getItem("theme");
-      var theme = storedTheme;
-      if (!theme) {
-        var prefersDark = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches;
-        theme = prefersDark ? "dark" : "light";
-        localStorage.setItem("theme", theme);
-      }
-      if (document.documentElement) {
-        if (theme === "dark") {
-          document.documentElement.setAttribute("data-theme", "dark");
-        } else {
-          document.documentElement.removeAttribute("data-theme");
-        }
-      }
-    })();
+    !function(){var e=localStorage.getItem("theme");var t=e;if(!t){var n=window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches;t=n?"dark":"light";localStorage.setItem("theme",t)}function applyTheme(){if(document.documentElement){if(t==="dark"){document.documentElement.setAttribute("data-theme","dark")}else{document.documentElement.removeAttribute("data-theme")}}if(document.body){if(t==="dark"){document.body.setAttribute("data-theme","dark")}else{document.body.removeAttribute("data-theme")}}}applyTheme();if(document.readyState==="loading"){document.addEventListener("DOMContentLoaded",applyTheme)}else{setTimeout(applyTheme,0)}}();
   </script>
 
   <link rel="stylesheet" href="{{ '/assets/css/style.css' | relative_url }}" />
