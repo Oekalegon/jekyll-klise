@@ -44,6 +44,64 @@ Navigate to `localhost:4000`. You're Welcome, Fork and be Stargazer.
 
 [![Deploy to Netlify](https://www.netlify.com/img/deploy/button.svg)](https://app.netlify.com/start/deploy?repository=https://github.com/piharpi/jekyll-klise) [![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/import/project?template=https://github.com/piharpi/jekyll-klise) [![Deploy to Azure button](https://aka.ms/deploytoazurebutton)](https://portal.azure.com/?feature.customportal=false&WT.mc_id=javascript-0000-jopapa#create/Microsoft.StaticApp)
 
+## Setup
+
+### Articles Collection
+
+To enable the articles page, you need to:
+
+1. **Add the articles collection to your `_config.yml`**:
+   ```yaml
+   collections:
+     posts:
+       output: true
+     articles:
+       output: true
+   ```
+
+2. **Create an `articles.md` file** in your site root:
+   ```markdown
+   ---
+   layout: page
+   title: Articles
+   permalink: /articles/
+   ---
+   
+   {% include articles_list.html %}
+   ```
+
+3. **Create or update `_data/menus.yml`** in your site root (if it doesn't exist, create it):
+   ```yaml
+   - title: home
+     url: /
+     external: false
+   
+   - title: archive
+     url: /archive/
+     external: false
+   
+   - title: articles
+     url: /articles/
+     external: false
+   
+   - title: about
+     url: /about/
+     external: false
+   ```
+   
+   **Note:** Jekyll themes don't automatically provide `_data/` files, so you need to create this file yourself. You can copy it from the theme's repository as a starting point.
+
+4. **Create your articles** in the `_articles/` directory with frontmatter like:
+   ```markdown
+   ---
+   layout: article
+   title: "Your Article Title"
+   date: 2024-01-15
+   article_collection: "Collection Name"  # Optional: groups articles
+   published: true
+   ---
+   ```
+
 ## Limitation
 
 - Since [`jekyll-postfiles`](https://github.com/nhoizey/jekyll-postfiles#compatibility) plugin isn't supported by github pages, this cause will make your site problems, path broken or post images won't show up, you can host alternatively using likes [netlify.com](https://netlify.com), [vercel.com](https://vercel.com), [azure.com](https://docs.microsoft.com/azure/static-web-apps/publish-jekyll) or [surge.sh](https://surge.sh) services, which support 3rd party.
