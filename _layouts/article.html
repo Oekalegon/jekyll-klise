@@ -69,6 +69,13 @@ layout: compress
           </div>
           {% endif %}
           <h1 class="header-title" itemprop="headline">{{ page.title | escape }}</h1>
+          {% if page.date %}
+          <div class="post-meta">
+            <time datetime="{{ page.date | date_to_xmlschema }}" itemprop="datePublished">
+              {{ page.date | date: "%b %d, %Y" }}
+            </time>
+          </div>
+          {% endif %}
           {% if page.categories and page.categories != empty %}
           <div class="post-meta">
             <span class="categories">

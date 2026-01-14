@@ -33,6 +33,8 @@ fb_appid:
 collections:
   posts:
     output: true
+  articles:
+    output: true
 
 # Markdown settings
 markdown: kramdown

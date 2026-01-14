@@ -1,7 +1,6 @@
 ---
 layout: page
 title: Articles
-title_no_dot: true
 permalink: /articles/
 ---
 
